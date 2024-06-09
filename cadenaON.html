@@ -1,0 +1,131 @@
+<!-- Georgina Lira Avila 4AMP -->
+<!-- Jesus Emmanuel Reyes Tlaltecatl -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <title><center><h2>Cadenas o Numeros</center></title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #65bdded0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #00083e;
+            text-align: center;
+        }
+
+        h3 {
+            color: #192777;
+            margin: 0;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        var arreglo = [];
+        var dec, a, b, n, indice = 0, conf, minu;
+        var suma = 0; 
+
+        function pregunta() {
+            if (indice == 0) {
+                a = confirm("Desea ingresar un elemento?");
+            } else {
+                a = confirm("Desea ingresar otro elemento?");
+            }
+
+            if (a == true) {
+                if (indice == 0) {
+                    do {
+                        dec = prompt("Ingrese 'N' para ingresar números o 'C' para cadenas de texto: ");
+                        conf = dec.toUpperCase();//Convertir a mayusculas
+                        dec = conf;
+
+                        if (conf !== 'N' && conf !== 'C') {
+                            alert("Letra no valida. Por favor vuelva a intentarlo");
+                        }
+
+                    } while (conf !== 'N' && conf !== 'C');
+                }
+            }
+            return conf, a;
+        }
+
+        function esNumero(n) {
+            return !isNaN(parseInt(n)) && isFinite(n);
+            //Verfica si el arreglo en la posicion indice sea numero
+        }
+
+        function imprimeC() {
+            if (conf == 'N') {
+                arreglo.sort(function(a, b){return a - b});//Ordenar de menor a mayor
+                document.write("<br>");
+                for (var i = 0; i < arreglo.length; i++) {
+                    document.write("<h3>" + arreglo[i] + "</h3>" + "<br>");
+                }
+                document.write("<h3>Suma= " + suma + "</h3>");
+            } else {
+                for(var i = 0; i < arreglo.length ; i++){
+                document.write(arreglo[i] + "      " + arreglo[i].length +"<br>");
+                }
+            }
+        }
+
+        pregunta();
+
+        while (conf === 'N' && a == true) {
+            do {
+                arreglo[indice] = prompt("Ingrese el numero que desea: ");
+                n = arreglo[indice];
+                if (esNumero(n) == false) {
+                    arreglo.pop();
+                    alert("Dato no valido por favor vuelva a intentarlo");
+                    n = 0;
+                } else {
+                    suma += parseInt(n);
+                }
+            } while (esNumero(n) == false);
+            indice += 1;
+            pregunta();
+        }
+
+        while (conf === 'C' && a == true) {
+            do {
+                arreglo[indice] = prompt("Ingrese la cadena de texto que necesite: ");
+                n = arreglo[indice];
+                // Convertir el elemento a minúsculas
+                arreglo[indice] = n.toLowerCase();
+                arreglo.sort();
+
+                 // Verificar si es una cadena
+                if (esNumero(n) == true) {
+                 arreglo.pop();
+                alert("Dato no valido por favor vuelva a intentarlo");
+                 n = "";
+                }
+            } while (esNumero(n) == true);
+            indice += 1;
+            pregunta();
+        }      
+
+        imprimeC();
+
+        if (a == false) {
+            alert("Gracias por usar el programa");
+        }
+    </script>
+</body>
+</html>
